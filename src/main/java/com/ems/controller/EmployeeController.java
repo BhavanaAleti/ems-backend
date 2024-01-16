@@ -35,4 +35,20 @@ public class EmployeeController {
         List<EmployeeDto> employees = employeeService.getAllEmployees();
         return ResponseEntity.ok(employees);
     }
+
+    //Update Employee using id REST API
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long employeeId,
+                                                       @RequestBody EmployeeDto updateEmployee){
+        EmployeeDto employeeDto = employeeService.updateEmployee(employeeId,updateEmployee);
+        return ResponseEntity.ok(employeeDto);
+    }
+
+    //Delete Employee REST API
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId){
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("Employee deleted successfully");
+    }
+
 }
